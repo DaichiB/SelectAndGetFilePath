@@ -7,7 +7,7 @@ using System.IO;
 public class PopupSelectFile : MonoBehaviour
 {
     [SerializeField]
-    Text txtCurrentFile;
+    InputField txtCurrentFile;
     [SerializeField]
     Text txtSelectedFile;
     [SerializeField]
@@ -21,10 +21,10 @@ public class PopupSelectFile : MonoBehaviour
     protected string m_CurrentPath;
     protected StringParameterDel m_CallbackOnClose;
 
-    public void Init(StringParameterDel callbackOnClose)
+    public void Init(string path,StringParameterDel callbackOnClose)
     {
         m_CallbackOnClose = callbackOnClose;
-        SetupUI(Directory.GetCurrentDirectory());
+        SetupUI(path);
     }
 
     void SetupUI(string path)
@@ -32,6 +32,8 @@ public class PopupSelectFile : MonoBehaviour
         txtCurrentFile.text = path;
         txtSelectedFile.text = Path.GetFileName(path);
         m_CurrentPath = path;
+        Vector2 size = new Vector2(this.GetComponent<RectTransform>().rect.width, 40.0f);
+        content.GetComponent<GridLayoutGroup>().cellSize = size;
         string[] pathList = Directory.GetFileSystemEntries(path);
         m_SelectedItem = null;
         for (int i = content.childCount - 1; i >= 0; i--)
@@ -97,5 +99,10 @@ public class PopupSelectFile : MonoBehaviour
         }
 
         Destroy(this.gameObject);
+    }
+
+    public void OnClick_Update()
+    {
+        SetupUI(txtCurrentFile.text);
     }
 }
