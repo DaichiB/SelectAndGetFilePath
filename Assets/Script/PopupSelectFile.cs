@@ -12,6 +12,8 @@ public class PopupSelectFile : MonoBehaviour
     Text txtSelectedFile;
     [SerializeField]
     Transform content;
+    [SerializeField]
+    Scrollbar scroll;
 
     public delegate void StringParameterDel(string str);
 
@@ -30,6 +32,7 @@ public class PopupSelectFile : MonoBehaviour
     void SetupUI(string path)
     {
         txtCurrentFile.text = path;
+        scroll.value = 1;
         txtSelectedFile.text = Path.GetFileName(path);
         m_CurrentPath = path;
         Vector2 size = new Vector2(this.GetComponent<RectTransform>().rect.width, 40.0f);

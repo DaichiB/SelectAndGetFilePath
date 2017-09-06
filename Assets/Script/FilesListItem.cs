@@ -7,6 +7,8 @@ using System.IO;
 public class FilesListItem : MonoBehaviour {
     [SerializeField]
     Text txtFileName;
+    [SerializeField]
+    GameObject iconFolder;
 
     public delegate void ClickItem(FilesListItem item);
 
@@ -20,6 +22,7 @@ public class FilesListItem : MonoBehaviour {
         m_OnClickIte = onClickItem;
         string fileName = Path.GetFileName(path);
         txtFileName.text = fileName;
+        iconFolder.SetActive(Path.GetExtension(fileName)=="");
     }
 
     public void OnClick_item()
