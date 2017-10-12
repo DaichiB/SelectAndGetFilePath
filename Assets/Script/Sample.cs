@@ -10,9 +10,17 @@ public class Sample : MonoBehaviour
     [SerializeField]
     Text txtSelectFile;
 
-    public void OnClick_Open()
+    public void OnClick_OpenSelect()
     {
         GetFilePassManager.OpenPopupSelectFile(delegate (string str)
+        {
+            txtSelectFile.text = str;
+        }, parent);
+    }
+
+    public void OnClick_OpenSave()
+    {
+        GetFilePassManager.OpenPopupSaveFile(delegate (string str)
         {
             txtSelectFile.text = str;
         }, parent);
