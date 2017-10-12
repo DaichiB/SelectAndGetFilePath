@@ -93,9 +93,9 @@ public class PopupSaveFile : MonoBehaviour
         if (callback != null)
         {
             if (m_SelectedItem != null)
-                callback(m_SelectedItem.FilePath + "/" + txtNewName.text);
+                callback(m_SelectedItem.FilePath + "\\" + txtNewName.text);
             else
-                callback(m_CurrentPath + "/" + txtNewName.text);
+                callback(m_CurrentPath + "\\" + txtNewName.text);
         }
 
         Destroy(this.gameObject);
